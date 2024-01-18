@@ -1,0 +1,193 @@
+<div class="mt-2 mx-4 lg:mt-10 lg:mx-20 flex justify-end">
+  <div class="cursor-pointer p-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </div>
+</div>
+<div class="w-full flex justify-center">
+  <div
+    class="bg-gray-200 text-primary-950 dark:bg-primary-900 dark:text-primary-50 rounded-md mx-4 mb-10 p-4 lg:p-6"
+  >
+    <h1 class="font-bold text-lg">Registro de Transacción</h1>
+    <p class="text-sm">
+      Este formulario registra transacciones, capturando detalles del comercio y
+      el usuario.
+    </p>
+    <form class="mt-6">
+      <h2 class="font-bold">Transacción</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+        <div class="flex flex-col mt-3">
+          <label for="transactionCode" class="text-sm mb-2">Código</label>
+          <div
+            class="flex items-center bg-gray-50 dark:bg-primary-950 rounded-md"
+          >
+            <p class="ml-4 text-lg">#</p>
+            <input
+              type="number"
+              name="transactionCode"
+              class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col mt-3">
+          <label for="transactionTotal" class="text-sm mb-2">Total</label>
+          <div
+            class="flex items-center bg-gray-50 dark:bg-primary-950 rounded-md"
+          >
+            <p class="ml-4 text-lg">$</p>
+            <input
+              type="number"
+              name="transactionTotal"
+              class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+        <div class="flex flex-col mt-3">
+          <label for="transactionDate" class="text-sm mb-2">Fecha</label>
+          <input
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+            type="date"
+            name="transactionDate"
+          />
+        </div>
+        <div class="flex flex-col mt-3">
+          <label for="transactionTime" class="text-sm mb-2">Hora</label>
+          <input
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+            type="time"
+            name="transactionTime"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+        <div class="flex flex-col mt-3">
+          <label for="transactionPaymentMethod" class="text-sm mb-2"
+            >Medio de pago</label
+          >
+          <select
+            name="transactionPaymentMethod"
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+          >
+            <option value="0">Tarjeta de crédito</option>
+            <option value="1">PSE</option>
+            <option value="2">GANA</option>
+            <option value="3">Caja</option>
+          </select>
+        </div>
+        <div class="flex flex-col mt-3">
+          <label for="transactionStatus" class="text-sm mb-2">Estado</label>
+          <select
+            name="transactionStatus"
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+          >
+            <option value="0">Aceptada</option>
+            <option value="1">Rechazada</option>
+            <option value="2">Pendiente</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-3">
+        <label for="transactionConcept" class="text-sm mb-2">Concepto</label>
+        <input
+          type="text"
+          name="transactionConcept"
+          class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+        />
+      </div>
+
+      <hr class="my-3 border-gray-200 dark:border-primary-800" />
+
+      <h2 class="font-bold mt-4">Comercio</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+        <div class="flex flex-col mt-3">
+          <label for="companyCode" class="text-sm mb-2">Código</label>
+          <div
+            class="flex items-center bg-gray-50 dark:bg-primary-950 rounded-md"
+          >
+            <p class="ml-4 text-lg">#</p>
+            <input
+              type="number"
+              name="companyCode"
+              class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col mt-3">
+          <label for="companyId" class="text-sm mb-2">NIT</label>
+          <input
+            type="number"
+            name="companyId"
+            class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col mt-3">
+        <label for="companyName" class="text-sm mb-2">Nombre</label>
+        <input
+          type="text"
+          name="companyName"
+          class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+        />
+      </div>
+      <div class="flex flex-col mt-3">
+        <label for="companyAddress" class="text-sm mb-2">Dirección</label>
+        <input
+          type="text"
+          name="companyAddress"
+          class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+        />
+      </div>
+
+      <hr class="my-3 border-gray-200 dark:border-primary-800" />
+
+      <h2 class="font-bold mt-4">Usuario</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+        <div class="flex flex-col mt-3">
+          <label for="userId" class="text-sm mb-2">Identificación</label>
+          <input
+            type="number"
+            name="userId"
+            class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
+          />
+        </div>
+        <div class="flex flex-col mt-3">
+          <label for="userName" class="text-sm mb-2">Nombre</label>
+          <input
+            type="text"
+            name="userName"
+            class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col mt-3">
+        <label for="userEmail" class="text-sm mb-2">Correo electrónico</label>
+        <input
+          type="text"
+          name="userEmail"
+          class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+        />
+      </div>
+
+      <input
+        type="submit"
+        value="Enviar"
+        class="w-full border-2 rounded-md border-primary-500 dark:border-primary-800 hover:bg-primary-500 hover:text-primary-950 hover:border-primary-500 hover:dark:border-primary-500 duration-300 font-semibold text-sm py-2 px-5 mt-5 cursor-pointer"
+      />
+    </form>
+  </div>
+</div>

@@ -5,11 +5,12 @@ import { IInvoiceServerDTO } from './models/dto/invoice.server.dto';
 import { TrCardComponent } from './components/tr-card/tr-card.component';
 import { IInvoice } from './models/invoice';
 import { PAYMENT_METHOD, TRANSACTION_STATUS } from './models/transaction';
+import { TrFormComponent } from './components/tr-form/tr-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TrCardComponent],
+  imports: [CommonModule, RouterOutlet, TrCardComponent, TrFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

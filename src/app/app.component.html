@@ -1,7 +1,9 @@
 <main [ngClass]="darkMode() ? 'dark' : ''">
   <!-- LOADING -->
   @if (loading()) {
-  <div class="h-screen w-screen flex justify-center items-center fixed z-50 bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-50">
+  <div
+    class="h-screen w-screen flex justify-center items-center fixed z-50 bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-50"
+  >
     <div class="flex items-center flex-col">
       <div class="h-36 w-36 loader my-5 relative">
         <div
@@ -90,6 +92,7 @@
           <input
             type="search"
             name="mainSearch"
+            placeholder="Buscar..."
             class="lg:w-80 grow lg:grow-0 bg-transparent border-0 focus:outline-none focus:ring-0"
           />
         </div>
@@ -101,11 +104,14 @@
       </div>
       <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         @for (invoice of data(); track invoice.id) {
-        <app-tr-card [data]="invoice"></app-tr-card>
+        <app-tr-card [data]="invoice" class="flex items-stretch"></app-tr-card>
         }
       </div>
     </section>
     <!-- END MAIN SECTION -->
   </div>
   }
+  <app-tr-form
+    class="h-screen w-screen fixed z-50 top-0 bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-50 overflow-auto"
+  ></app-tr-form>
 </main>

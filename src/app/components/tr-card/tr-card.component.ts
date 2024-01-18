@@ -18,21 +18,4 @@ export class TrCardComponent {
     }
     return amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
-
-  translatePaymentMethod(transactionPaymentMethod: PAYMENT_METHOD | undefined): string {
-    console.log(transactionPaymentMethod);
-
-    if (transactionPaymentMethod === undefined) {
-      return 'Medio de pago no especificado';
-    } else if (transactionPaymentMethod === PAYMENT_METHOD.CASH_REGISTER) {
-      return 'Caja';
-    } else if (transactionPaymentMethod === PAYMENT_METHOD.CREDIT_CARD) {
-      return 'Tarjeta de Crédito';
-    } else if (transactionPaymentMethod === PAYMENT_METHOD.GANA) {
-      return 'GANA';
-    } else if (transactionPaymentMethod === PAYMENT_METHOD.PSE) {
-      return 'PSE';
-    }
-    return 'Medio de pago no especificado';
-  }
 }
