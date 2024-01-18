@@ -2,18 +2,21 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { IInvoiceServerDTO } from './models/dto/invoice.server.dto';
+import { TrCardComponent } from './components/tr-card/tr-card.component';
+import { IInvoice } from './models/invoice';
+import { PAYMENT_METHOD, TRANSACTION_STATUS } from './models/transaction';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, TrCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   loading = signal(true);
   darkMode = signal(true);
-  data = signal<IInvoiceServerDTO[] | undefined>(undefined);
+  data = signal<IInvoice[] | undefined>(undefined);
 
   constructor() {
     void this.darkModeHandler();
@@ -39,14 +42,16 @@ export class AppComponent {
 
   async dataHandler() {
     this.loading.set(true);
+    let resetedData: IInvoice[];
     const localData = localStorage.getItem('data');
     if (localData !== null) {
-      this.data.set(JSON.parse(localData));
+      resetedData = await this.resetDataInformation(JSON.parse(localData));
     } else {
       const serverData = await this.getServerData();
-      this.data.set(serverData);
+      resetedData = await this.resetDataInformation(serverData);
       localStorage.setItem('data', JSON.stringify(serverData));
     }
+    this.data.set(resetedData);
     this.loading.set(false);
   }
 
@@ -77,5 +82,61 @@ export class AppComponent {
     }
 
     return data;
+  }
+
+  async resetDataInformation(data: IInvoiceServerDTO[]): Promise<IInvoice[]> {
+    const resetedData: IInvoice[] = [];
+    for (const invoice in data) {
+      const newData: IInvoice = {
+        id: crypto.randomUUID(),
+        companyCode: data[invoice].comercio_codigo,
+        companyName: data[invoice].comercio_nombre,
+        companyId: data[invoice].comercio_nit,
+        companyAddress: data[invoice].comercio_direccion,
+        transactionCode: data[invoice].Trans_codigo,
+        transactionPaymentMethod: this.getTransactionPaymentMethod(
+          data[invoice].Trans_medio_pago
+        ),
+        transactionStatus: this.getTransactionStatus(
+          data[invoice].Trans_estado
+        ),
+        transactionTotal: data[invoice].Trans_total,
+        transactionDate: data[invoice].Trans_fecha,
+        transactionConcept: data[invoice].Trans_concepto,
+        userId: data[invoice].usuario_identificacion,
+        userName: data[invoice].usuario_nombre,
+        userEmail: data[invoice].usuario_email,
+      };
+      resetedData.push(newData);
+    }
+    return resetedData;
+  }
+
+  private getTransactionPaymentMethod(
+    paymentMethodCode: number
+  ): PAYMENT_METHOD {
+    if (paymentMethodCode == 32) {
+      return PAYMENT_METHOD.CREDIT_CARD;
+    } else if (paymentMethodCode == 29) {
+      return PAYMENT_METHOD.PSE;
+    } else if (paymentMethodCode == 41) {
+      return PAYMENT_METHOD.GANA;
+    } else if (paymentMethodCode == 42) {
+      return PAYMENT_METHOD.CASH_REGISTER;
+    }
+    return PAYMENT_METHOD.UNDEFINED;
+  }
+
+  private getTransactionStatus(
+    transactionStatusCode: number
+  ): TRANSACTION_STATUS {
+    if (transactionStatusCode == 1) {
+      return TRANSACTION_STATUS.APPROVED;
+    } else if (transactionStatusCode == 1000) {
+      return TRANSACTION_STATUS.REJECTED;
+    } else if (transactionStatusCode == 999) {
+      return TRANSACTION_STATUS.PENDING;
+    }
+    return TRANSACTION_STATUS.UNDEFINED;
   }
 }

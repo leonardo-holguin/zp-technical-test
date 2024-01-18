@@ -3,12 +3,14 @@ export enum PAYMENT_METHOD {
   PSE,
   GANA,
   CASH_REGISTER,
+  UNDEFINED,
 }
 
 export enum TRANSACTION_STATUS {
   APPROVED,
   REJECTED,
   PENDING,
+  UNDEFINED,
 }
 
 export interface ITransaction {
