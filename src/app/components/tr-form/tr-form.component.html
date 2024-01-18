@@ -18,12 +18,12 @@
   <div
     class="bg-gray-200 text-primary-950 dark:bg-primary-900 dark:text-primary-50 rounded-md mx-4 mb-10 p-4 lg:p-6"
   >
-  @if (data) {
+    @if (data?.id) {
     <h1 class="font-bold text-lg">Actualización de Transacción</h1>
-    <p class="text-sm underline">Transacción # {{ data.transactionCode }}</p>
-  } @else {
+    <p class="text-sm underline">Transacción # {{ data?.transactionCode }}</p>
+    } @else {
     <h1 class="font-bold text-lg">Registro de Transacción</h1>
-  }
+    }
     <p class="text-sm">
       Este formulario registra transacciones, capturando detalles del comercio y
       el usuario.
@@ -40,7 +40,7 @@
             <input
               type="number"
               name="transactionCode"
-              [value]="data?.transactionCode"
+              [formControl]="transactionCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -62,19 +62,19 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
-        <div class="flex flex-col mt-3">
+        <div class="flex flex-col mt-3 w-full">
           <label for="transactionDate" class="text-sm mb-2">Fecha</label>
           <input
-            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md w-full"
             type="date"
             name="transactionDate"
             [value]="formatDate(data?.transactionDate)"
           />
         </div>
-        <div class="flex flex-col mt-3">
+        <div class="flex flex-col mt-3 w-full">
           <label for="transactionTime" class="text-sm mb-2">Hora</label>
           <input
-            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
+            class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md w-full"
             type="time"
             name="transactionTime"
             [value]="formatTime(data?.transactionDate)"
@@ -201,12 +201,12 @@
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
-
-      <input
-        type="submit"
-        value="Enviar"
-        class="w-full border-2 rounded-md border-primary-500 dark:border-primary-800 hover:bg-primary-500 hover:text-primary-950 hover:border-primary-500 hover:dark:border-primary-500 duration-300 font-semibold text-sm py-2 px-5 mt-5 cursor-pointer"
-      />
     </form>
+    <button
+        class="w-full border-2 rounded-md border-primary-500 dark:border-primary-800 hover:bg-primary-500 hover:text-primary-950 hover:border-primary-500 hover:dark:border-primary-500 duration-300 font-semibold text-sm py-2 px-5 mt-5 cursor-pointer"
+        (click)="saveData()"
+        >
+        Enviar
+      </button>
   </div>
 </div>

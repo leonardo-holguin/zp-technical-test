@@ -1,14 +1,25 @@
-import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  HostListener,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { IInvoice } from '../../models/invoice';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { IInvoiceServerDTO } from '../../models/dto/invoice.server.dto';
 
 @Component({
   selector: 'app-tr-form',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './tr-form.component.html',
   styleUrl: './tr-form.component.scss',
 })
-export class TrFormComponent {
+export class TrFormComponent implements OnChanges {
   @Input() data?: IInvoice;
   @Output() closeForm = new EventEmitter();
 
@@ -17,6 +28,43 @@ export class TrFormComponent {
     if (event.key === 'Escape') {
       this.closeForm.emit();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    changes;
+    this.transactionCodeCtrl.setValue(this.data?.transactionCode);
+  }
+
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  transactionCodeCtrl = new FormControl<string | undefined>(undefined, {
+    nonNullable: true,
+    validators: [Validators.required],
+  });
+
+  saveData() {
+    if (
+      !this.transactionCodeCtrl.valid ||
+      this.transactionCodeCtrl.value == '-1'
+    ) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Código de transacción no válido',
+      });
+      return;
+    }
+    console.log(this.transactionCodeCtrl.value);
+    console.log('guardar info');
   }
 
   formatDate(date: string | undefined | null): string | null {
