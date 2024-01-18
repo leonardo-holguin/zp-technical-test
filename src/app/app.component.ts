@@ -17,7 +17,9 @@ import { TrFormComponent } from './components/tr-form/tr-form.component';
 export class AppComponent {
   loading = signal(true);
   darkMode = signal(true);
+  formMode = signal(false);
   data = signal<IInvoice[] | undefined>(undefined);
+  currentData = signal<IInvoice | undefined>(undefined);
 
   constructor() {
     void this.darkModeHandler();

@@ -1,5 +1,5 @@
 <div class="mt-2 mx-4 lg:mt-10 lg:mx-20 flex justify-end">
-  <div class="cursor-pointer p-4">
+  <div class="cursor-pointer p-4" (click)="closeForm.emit()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -18,7 +18,12 @@
   <div
     class="bg-gray-200 text-primary-950 dark:bg-primary-900 dark:text-primary-50 rounded-md mx-4 mb-10 p-4 lg:p-6"
   >
+  @if (data) {
+    <h1 class="font-bold text-lg">Actualización de Transacción</h1>
+    <p class="text-sm underline">Transacción # {{ data.transactionCode }}</p>
+  } @else {
     <h1 class="font-bold text-lg">Registro de Transacción</h1>
+  }
     <p class="text-sm">
       Este formulario registra transacciones, capturando detalles del comercio y
       el usuario.
@@ -35,6 +40,7 @@
             <input
               type="number"
               name="transactionCode"
+              [value]="data?.transactionCode"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -48,6 +54,7 @@
             <input
               type="number"
               name="transactionTotal"
+              [value]="data?.transactionTotal"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -61,6 +68,7 @@
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
             type="date"
             name="transactionDate"
+            [value]="formatDate(data?.transactionDate)"
           />
         </div>
         <div class="flex flex-col mt-3">
@@ -69,6 +77,7 @@
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
             type="time"
             name="transactionTime"
+            [value]="formatTime(data?.transactionDate)"
           />
         </div>
       </div>
@@ -80,6 +89,7 @@
           >
           <select
             name="transactionPaymentMethod"
+            [value]="data?.transactionPaymentMethod"
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
           >
             <option value="0">Tarjeta de crédito</option>
@@ -92,6 +102,7 @@
           <label for="transactionStatus" class="text-sm mb-2">Estado</label>
           <select
             name="transactionStatus"
+            [value]="data?.transactionStatus"
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
           >
             <option value="0">Aceptada</option>
@@ -106,6 +117,7 @@
         <input
           type="text"
           name="transactionConcept"
+          [value]="data?.transactionConcept"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -123,6 +135,7 @@
             <input
               type="number"
               name="companyCode"
+              [value]="data?.companyCode"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -132,6 +145,7 @@
           <input
             type="number"
             name="companyId"
+            [value]="data?.companyId"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -141,6 +155,7 @@
         <input
           type="text"
           name="companyName"
+          [value]="data?.companyName"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -149,6 +164,7 @@
         <input
           type="text"
           name="companyAddress"
+          [value]="data?.companyAddress"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -162,6 +178,7 @@
           <input
             type="number"
             name="userId"
+            [value]="data?.userId"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -170,6 +187,7 @@
           <input
             type="text"
             name="userName"
+            [value]="data?.userName"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -177,8 +195,9 @@
       <div class="flex flex-col mt-3">
         <label for="userEmail" class="text-sm mb-2">Correo electrónico</label>
         <input
-          type="text"
+          type="email"
           name="userEmail"
+          [value]="data?.userEmail"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>

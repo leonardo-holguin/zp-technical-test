@@ -98,13 +98,18 @@
         </div>
         <button
           class="grow lg:grow-0 border-2 rounded-md border-primary-500 dark:border-primary-800 hover:bg-primary-500 hover:text-primary-950 hover:border-primary-500 hover:dark:border-primary-500 duration-300 font-semibold text-sm py-2 px-5"
+          (click)="currentData.set(undefined); formMode.set(true)"
         >
           Nueva Transacción
         </button>
       </div>
       <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         @for (invoice of data(); track invoice.id) {
-        <app-tr-card [data]="invoice" class="flex items-stretch"></app-tr-card>
+        <app-tr-card
+          [data]="invoice"
+          class="flex items-stretch"
+          (click)="currentData.set(invoice); formMode.set(true)"
+        ></app-tr-card>
         }
       </div>
     </section>
@@ -112,6 +117,12 @@
   </div>
   }
   <app-tr-form
-    class="h-screen w-screen fixed z-50 top-0 bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-50 overflow-auto"
+    [class.translate-x-full]="!formMode()"
+    [class.overflow-hidden]="!formMode()"
+    [class.opacity-0]="!formMode()"
+    [class.overflow-auto]="formMode()"
+    (closeForm)="formMode.set(false)"
+    [data]="currentData()"
+    class="h-screen w-screen fixed z-50 top-0 bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-50 duration-500"
   ></app-tr-form>
 </main>
