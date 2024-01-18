@@ -20,7 +20,7 @@
 
     <!-- HEADER -->
     <header
-      class="flex justify-between items-center border-b border-primary-300 dark:border-primary-800 py-2 px-5 lg:px-10"
+      class="flex justify-between items-center border-b border-gray-200 dark:border-primary-800 bg-white dark:bg-primary-950 py-3 px-5 lg:py-5 lg:px-10"
     >
       <div>
         <h1 class="text-xl">Technical Test</h1>
@@ -67,8 +67,40 @@
     </header>
     <!-- END HEADER -->
 
-    <section>
+    <!-- MAIN SECTION -->
+    <section class="p-5 lg:px-10 lg:py-6">
+      <div
+        class="border rounded-md border-gray-200 dark:border-primary-800 p-5 flex flex-col-reverse lg:flex-row justify-between"
+      >
+        <div
+          class="flex items-center bg-gray-200 dark:bg-primary-900 rounded-md mt-3 lg:mt-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="min-w-5 w-5 h-5 mx-3"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="search"
+            name="mainSearch"
+            class="lg:w-80 grow lg:grow-0 bg-transparent border-0 focus:outline-none focus:ring-0"
+          />
+        </div>
+        <button
+          class="grow lg:grow-0 border-2 rounded-md border-primary-500 dark:border-primary-800 hover:bg-primary-500 hover:text-primary-950 hover:border-primary-500 hover:dark:border-primary-500 duration-300 font-semibold text-sm py-2 px-5"
+        >
+          Nueva Transacción
+        </button>
+      </div>
       <h1>{{ data()?.length }}</h1>
     </section>
+    <!-- END MAIN SECTION -->
   </div>
 </main>
