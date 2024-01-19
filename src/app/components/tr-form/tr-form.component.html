@@ -54,7 +54,7 @@
             <input
               type="number"
               name="transactionTotal"
-              [value]="data?.transactionTotal"
+              [formControl]="transactionTotalCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -68,7 +68,7 @@
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md w-full"
             type="date"
             name="transactionDate"
-            [value]="formatDate(data?.transactionDate)"
+            [formControl]="transactionDateCtrl"
           />
         </div>
         <div class="flex flex-col mt-3 w-full">
@@ -77,7 +77,8 @@
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md w-full"
             type="time"
             name="transactionTime"
-            [value]="formatTime(data?.transactionDate)"
+            step="1"
+            [formControl]="transactionTimeCtrl"
           />
         </div>
       </div>
@@ -89,7 +90,7 @@
           >
           <select
             name="transactionPaymentMethod"
-            [value]="data?.transactionPaymentMethod"
+            [formControl]="transactionPaymentMethodCtrl"
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
           >
             <option value="0">Tarjeta de crédito</option>
@@ -102,7 +103,7 @@
           <label for="transactionStatus" class="text-sm mb-2">Estado</label>
           <select
             name="transactionStatus"
-            [value]="data?.transactionStatus"
+            [formControl]="transactionStatusCtrl"
             class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
           >
             <option value="0">Aceptada</option>
@@ -117,7 +118,7 @@
         <input
           type="text"
           name="transactionConcept"
-          [value]="data?.transactionConcept"
+          [formControl]="transactionConceptCtrl"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -135,7 +136,7 @@
             <input
               type="number"
               name="companyCode"
-              [value]="data?.companyCode"
+              [formControl]="companyCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
           </div>
@@ -145,7 +146,7 @@
           <input
             type="number"
             name="companyId"
-            [value]="data?.companyId"
+            [formControl]="companyIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -155,7 +156,7 @@
         <input
           type="text"
           name="companyName"
-          [value]="data?.companyName"
+          [formControl]="companyNameCtrl"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -164,7 +165,7 @@
         <input
           type="text"
           name="companyAddress"
-          [value]="data?.companyAddress"
+          [formControl]="companyAddressCtrl"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
@@ -178,7 +179,7 @@
           <input
             type="number"
             name="userId"
-            [value]="data?.userId"
+            [formControl]="userIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -187,7 +188,7 @@
           <input
             type="text"
             name="userName"
-            [value]="data?.userName"
+            [formControl]="userNameCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
         </div>
@@ -197,7 +198,7 @@
         <input
           type="email"
           name="userEmail"
-          [value]="data?.userEmail"
+          [formControl]="userEmailCtrl"
           class="border-0 focus:outline-none focus:ring-0 bg-gray-50 dark:bg-primary-950 rounded-md"
         />
       </div>
