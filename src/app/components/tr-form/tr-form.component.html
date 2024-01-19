@@ -40,6 +40,7 @@
             <input
               type="text"
               name="transactionCode"
+              (input)="deleteNoNumerical($event)"
               (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="transactionCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
@@ -55,6 +56,7 @@
             <input
               type="text"
               name="transactionTotal"
+              (input)="deleteNoNumerical($event)"
               (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="transactionTotalCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
@@ -138,6 +140,7 @@
             <input
               type="text"
               name="companyCode"
+              (input)="deleteNoNumerical($event)"
               (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="companyCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
@@ -149,6 +152,7 @@
           <input
             type="text"
             name="companyId"
+            (input)="deleteNoNumerical($event)"
             (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
             [formControl]="companyIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
@@ -183,6 +187,7 @@
           <input
             type="text"
             name="userId"
+            (input)="deleteNoNumerical($event)"
             (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
             [formControl]="userIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"

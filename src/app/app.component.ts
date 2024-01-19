@@ -59,10 +59,7 @@ export class AppComponent {
   computedData = computed(() => {
     const currentPage = this.currentPage();
     const searchedData = this.searchedData();
-
-
-
-    return searchedData?.slice((currentPage-1)*18, currentPage*18);
+    return searchedData?.slice((currentPage - 1) * 18, currentPage * 18);
   });
 
   async darkModeHandler() {
