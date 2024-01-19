@@ -5,6 +5,53 @@ import {
 } from '../../../models/transaction';
 
 export class TrFormComponentFormCtrl {
+  constructor() {
+    this.transactionCodeCtrl.valueChanges.subscribe((value) => {
+      if (value !== undefined) {
+        const numberValue = value.replace(/\D/g, '');
+        if (value !== numberValue) {
+          this.transactionCodeCtrl.setValue(numberValue);
+        }
+      }
+    });
+
+    this.transactionTotalCtrl.valueChanges.subscribe((value) => {
+      if (value !== undefined) {
+        const numberValue = value.replace(/\D/g, '');
+        if (value !== numberValue) {
+          this.transactionTotalCtrl.setValue(numberValue);
+        }
+      }
+    });
+
+    this.companyCodeCtrl.valueChanges.subscribe((value) => {
+      if (value !== undefined) {
+        const numberValue = value.replace(/\D/g, '');
+        if (value !== numberValue) {
+          this.companyCodeCtrl.setValue(numberValue);
+        }
+      }
+    });
+
+    this.companyIdCtrl.valueChanges.subscribe((value) => {
+      if (value !== undefined) {
+        const numberValue = value.replace(/\D/g, '');
+        if (value !== numberValue) {
+          this.companyIdCtrl.setValue(numberValue);
+        }
+      }
+    });
+
+    this.userIdCtrl.valueChanges.subscribe((value) => {
+      if (value !== undefined) {
+        const numberValue = value.replace(/\D/g, '');
+        if (value !== numberValue) {
+          this.userIdCtrl.setValue(numberValue);
+        }
+      }
+    });
+  }
+
   transactionCodeCtrl = new FormControl<string | undefined>(undefined, {
     nonNullable: true,
     validators: [Validators.required],

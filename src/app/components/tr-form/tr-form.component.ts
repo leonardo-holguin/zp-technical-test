@@ -82,17 +82,6 @@ export class TrFormComponent
     },
   });
 
-  deleteNoNumerical(event: Event) {
-    if (event.target !== null) {
-      const inputValue = (event.target as HTMLInputElement).value;
-      const numberValue = inputValue.replace(/\D/g, '');
-
-      if (inputValue !== numberValue) {
-        this.transactionCodeCtrl.setValue(numberValue);
-      }
-    }
-  }
-
   saveData() {
     const errorFlow = TrFormComponentFormValidator.validateFormData({
       transactionCodeCtrl: this.transactionCodeCtrl,
