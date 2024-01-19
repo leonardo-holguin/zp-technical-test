@@ -70,7 +70,7 @@
     <!-- END HEADER -->
 
     <!-- MAIN SECTION -->
-    <section class="p-5 lg:px-10 lg:py-6 mt-16">
+    <section class="p-5 lg:px-10 lg:py-6 mt-16 min-h-screen">
       <div
         class="border rounded-md border-gray-200 dark:border-primary-800 p-5 flex flex-col-reverse lg:flex-row justify-between"
       >
@@ -91,6 +91,7 @@
           </svg>
           <input
             type="search"
+            [formControl]="searchInput"
             name="mainSearch"
             placeholder="Buscar..."
             class="lg:w-80 grow lg:grow-0 bg-transparent border-0 focus:outline-none focus:ring-0"
@@ -104,7 +105,7 @@
         </button>
       </div>
       <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        @for (invoice of data(); track invoice.id) {
+        @for (invoice of computedData(); track invoice.id) {
         <app-tr-card
           [data]="invoice"
           class="flex items-stretch"
@@ -114,6 +115,28 @@
       </div>
     </section>
     <!-- END MAIN SECTION -->
+
+    <!-- PAGINATION -->
+    @if (pagPages()) {
+    <div class="px-5 lg:px-10 mb-10 flex justify-center">
+      <div class="w-full grid grid-cols-6 lg:grid-cols-12 gap-4" style="max-width: 550px;">
+        @for (index of [].constructor(pagPages()); track index; let idx = $index) {
+        <div
+          (click)="currentPage.set(idx+1)"
+          [class.bg-primary-950]="(idx+1)==currentPage()"
+          [class.dark:bg-primary-50]="(idx+1)==currentPage()"
+          [class.text-primary-50]="(idx+1)==currentPage()"
+          [class.dark:text-primary-950]="(idx+1)==currentPage()"
+          [class.dark:font-bold]="(idx+1)==currentPage()"
+          class="border rounded-md w-10 h-10 flex justify-center items-center cursor-pointer"
+        >
+          {{ idx+1 }}
+        </div>
+        }
+      </div>
+    </div>
+    }
+    <!-- END PAGINATION -->
   </div>
   }
 
