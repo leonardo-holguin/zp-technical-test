@@ -10,7 +10,7 @@ export class TrFormComponentFormCtrl {
     validators: [Validators.required],
   });
 
-  transactionTotalCtrl = new FormControl<number | undefined>(undefined, {
+  transactionTotalCtrl = new FormControl<string | undefined>(undefined, {
     nonNullable: true,
     validators: [Validators.required],
   });
@@ -44,7 +44,7 @@ export class TrFormComponentFormCtrl {
     validators: [Validators.required],
   });
 
-  companyCodeCtrl = new FormControl<number | undefined>(undefined, {
+  companyCodeCtrl = new FormControl<string | undefined>(undefined, {
     nonNullable: true,
     validators: [Validators.required],
   });

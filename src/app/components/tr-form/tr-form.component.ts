@@ -47,7 +47,7 @@ export class TrFormComponent
     this.currentTrCode = this.data?.transactionCode;
 
     this.transactionCodeCtrl.setValue(this.data?.transactionCode);
-    this.transactionTotalCtrl.setValue(this.data?.transactionTotal);
+    this.transactionTotalCtrl.setValue(this.data?.transactionTotal.toString());
     this.transactionDateCtrl.setValue(
       this.formatDate(this.data?.transactionDate)
     );
@@ -60,7 +60,7 @@ export class TrFormComponent
     this.transactionStatusCtrl.setValue(this.data?.transactionStatus);
     this.transactionConceptCtrl.setValue(this.data?.transactionConcept);
 
-    this.companyCodeCtrl.setValue(this.data?.companyCode);
+    this.companyCodeCtrl.setValue(this.data?.companyCode.toString());
     this.companyIdCtrl.setValue(this.data?.companyId);
     this.companyNameCtrl.setValue(this.data?.companyName);
     this.companyAddressCtrl.setValue(this.data?.companyAddress);
@@ -225,7 +225,7 @@ export class TrFormComponent
         }
       }
       const response = await InvoiceService._addTransaction({
-        comercio_codigo: this.companyCodeCtrl.value,
+        comercio_codigo: parseInt(this.companyCodeCtrl.value),
         comercio_nombre: this.companyNameCtrl.value,
         comercio_nit: this.companyIdCtrl.value,
         comercio_direccion: this.companyAddressCtrl.value,
@@ -236,7 +236,7 @@ export class TrFormComponent
         Trans_estado: InvoiceService._TransactionStatusConvertion(
           this.transactionStatusCtrl.value
         ),
-        Trans_total: this.transactionTotalCtrl.value,
+        Trans_total: parseInt(this.transactionTotalCtrl.value),
         Trans_fecha: dateFormatter(
           this.transactionDateCtrl.value,
           this.transactionTimeCtrl.value
@@ -253,7 +253,9 @@ export class TrFormComponent
           'Transacción creada con código #' + this.transactionCodeCtrl.value,
       });
       this.data = undefined;
-      this.closeForm.emit();
+      setTimeout(function () {
+        location.reload();
+      }, 2000);
     } else if (this.currentTrCode) {
       for (const data in this.allData) {
         if (
@@ -273,7 +275,7 @@ export class TrFormComponent
       const response = await InvoiceService._updateTransaction(
         this.currentTrCode,
         {
-          comercio_codigo: this.companyCodeCtrl.value,
+          comercio_codigo: parseInt(this.companyCodeCtrl.value),
           comercio_nombre: this.companyNameCtrl.value,
           comercio_nit: this.companyIdCtrl.value,
           comercio_direccion: this.companyAddressCtrl.value,
@@ -284,7 +286,7 @@ export class TrFormComponent
           Trans_estado: InvoiceService._TransactionStatusConvertion(
             this.transactionStatusCtrl.value
           ),
-          Trans_total: this.transactionTotalCtrl.value,
+          Trans_total: parseInt(this.transactionTotalCtrl.value),
           Trans_fecha: dateFormatter(
             this.transactionDateCtrl.value,
             this.transactionTimeCtrl.value
@@ -321,7 +323,9 @@ export class TrFormComponent
           this.transactionCodeCtrl.value,
       });
       this.data = undefined;
-      this.closeForm.emit();
+      setTimeout(function () {
+        location.reload();
+      }, 2000);
     }
   }
 }

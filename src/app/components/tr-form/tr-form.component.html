@@ -38,8 +38,9 @@
           >
             <p class="ml-4 text-lg">#</p>
             <input
-              type="number"
+              type="text"
               name="transactionCode"
+              (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="transactionCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
@@ -52,8 +53,9 @@
           >
             <p class="ml-4 text-lg">$</p>
             <input
-              type="number"
+              type="text"
               name="transactionTotal"
+              (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="transactionTotalCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
@@ -134,8 +136,9 @@
           >
             <p class="ml-4 text-lg">#</p>
             <input
-              type="number"
+              type="text"
               name="companyCode"
+              (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
               [formControl]="companyCodeCtrl"
               class="bg-transparent border-0 focus:outline-none focus:ring-0 grow"
             />
@@ -144,8 +147,9 @@
         <div class="flex flex-col mt-3">
           <label for="companyId" class="text-sm mb-2">NIT</label>
           <input
-            type="number"
+            type="text"
             name="companyId"
+            (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
             [formControl]="companyIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
@@ -177,8 +181,9 @@
         <div class="flex flex-col mt-3">
           <label for="userId" class="text-sm mb-2">Identificación</label>
           <input
-            type="number"
+            type="text"
             name="userId"
+            (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
             [formControl]="userIdCtrl"
             class="border-0 focus:outline-none focus:ring-0 grow bg-gray-50 dark:bg-primary-950"
           />
